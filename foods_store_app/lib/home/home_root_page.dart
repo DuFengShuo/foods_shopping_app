@@ -31,7 +31,9 @@ class _HomeRootPageState extends State<HomeRootPage>
 
       centerTitle: true,
       background: Container(
+        margin: EdgeInsets.only(bottom: 2.h),//去除底部线条
         decoration: BoxDecoration(
+          // color: Colours.material_bg,
           image: DecorationImage(
             image: NetworkImage(
                 "https://yanxuan-item.nosdn.127.net/e4d67a42618560457af6b915f2772787.jpg"),
@@ -157,6 +159,8 @@ class _HomeRootPageState extends State<HomeRootPage>
           headerSliverBuilder: (BuildContext context, bool b) {
             return [
               SliverAppBar(
+
+                  // shadowColor: Colours.material_bg,
                   // brightness: Brightness.dark,
                   ///true SliverAppBar 不会滑动
                   pinned: true,
@@ -170,14 +174,16 @@ class _HomeRootPageState extends State<HomeRootPage>
                   ///SliverAppBar展开的高度
                   expandedHeight: 420.h,
                   flexibleSpace: buildFlexibleSpaceBar(),
-                  elevation: 0.3,
+                  elevation: 0.2,
                   bottom: PreferredSize(
                       preferredSize: Size.fromHeight(50.h),
                       child: Container(
                         width: Screen.width(context),
                         color: Colours.material_bg,
+
                         child: TabBar(
-                            indicatorPadding: EdgeInsets.only(left: 5.w, right: 5.w),
+
+                            indicatorPadding: EdgeInsets.only(left: 5.w, right: 5.w,),
                             controller: tabController,
                             indicatorSize: TabBarIndicatorSize.label,
                             indicatorColor: Colours.app_main,
@@ -192,7 +198,8 @@ class _HomeRootPageState extends State<HomeRootPage>
                             tabs: contentTabData
                                 .map((e) => Tab(text: "$e"))
                                 .toList()),
-                      ))),
+                      ))
+                   ),
             ];
           },
 
