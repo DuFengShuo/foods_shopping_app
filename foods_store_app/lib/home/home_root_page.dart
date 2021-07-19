@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foods_store_app/home/page/tj_page.dart';
 import 'package:foods_store_app/res/resources.dart';
+import 'package:foods_store_app/util/screen_utils.dart';
 import 'package:foods_store_app/widgets/my_card.dart';
 
 class HomeRootPage extends StatefulWidget {
@@ -27,6 +28,7 @@ class _HomeRootPageState extends State<HomeRootPage>
   FlexibleSpaceBar buildFlexibleSpaceBar() {
     return FlexibleSpaceBar(
       collapseMode: CollapseMode.pin,
+
       centerTitle: true,
       background: Container(
         decoration: BoxDecoration(
@@ -40,18 +42,22 @@ class _HomeRootPageState extends State<HomeRootPage>
         height: 320.h,
         child: Container(
           decoration: BoxDecoration(
-            color: Colours.material_bg,
-            borderRadius: BorderRadius.all(Radius.circular(10.r))
-          ),
-          margin: EdgeInsets.only(top: 220.h,left: 10.w,right: 10.w,bottom: 60.h),
+              color: Colours.material_bg,
+              borderRadius: BorderRadius.all(Radius.circular(10.r))),
+          margin: EdgeInsets.only(
+              top: 220.h, left: 10.w, right: 10.w, bottom: 60.h),
           height: 100,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("门店吃",style: TextStyles.textBold26,),
-              Text("外卖",style: TextStyles.textBold26,),
-
-
+              Text(
+                "门店吃",
+                style: TextStyles.textBold26,
+              ),
+              Text(
+                "外卖",
+                style: TextStyles.textBold26,
+              ),
             ],
           ),
         ),
@@ -100,7 +106,7 @@ class _HomeRootPageState extends State<HomeRootPage>
           headerSliverBuilder: (BuildContext context, bool b) {
             return [
               SliverAppBar(
-
+                  // brightness: Brightness.dark,
                   ///true SliverAppBar 不会滑动
                   pinned: true,
                   automaticallyImplyLeading: false,
@@ -110,32 +116,32 @@ class _HomeRootPageState extends State<HomeRootPage>
                   // snap: true,
                   forceElevated: true,
                   backgroundColor: Colours.material_bg,
-
                   ///SliverAppBar展开的高度
                   expandedHeight: 420.h,
                   flexibleSpace: buildFlexibleSpaceBar(),
                   elevation: 0.3,
                   bottom: PreferredSize(
-                    preferredSize: Size.fromHeight(50.h),
-                    child: Container(
-                      color: Colours.material_bg,
-                      height: 50.h,
-                      child: TabBar(
-                          // indicatorPadding: EdgeInsets.only(left: 8, right: 8),
-                          controller: tabController,
-                          indicatorSize: TabBarIndicatorSize.label,
-                          indicatorColor: Colours.app_main,
-                          unselectedLabelColor: Colours.dark_text_gray,
-                          labelColor: Colours.app_main,
-                          // isScrollable: true,
-                          onTap: (value) {
-                            print("点了第$value个");
-                          },
-                          tabs: contentTabData
-                              .map((e) => Tab(text: "$e"))
-                              .toList()),
-                    ),
-                  )),
+                      preferredSize: Size.fromHeight(50.h),
+                      child: Container(
+                        width: Screen.width(context),
+                        color: Colours.material_bg,
+                        child: TabBar(
+                            indicatorPadding: EdgeInsets.only(left: 5.w, right: 5.w),
+                            controller: tabController,
+                            indicatorSize: TabBarIndicatorSize.label,
+                            indicatorColor: Colours.app_main,
+                            unselectedLabelColor: Colours.dark_text_gray,
+                            labelColor: Colours.app_main,
+                            isScrollable: true,
+                            unselectedLabelStyle: TextStyles.textSize14,
+                            labelStyle: TextStyles.textBold18,
+                            onTap: (value) {
+                              print("点了第$value个");
+                            },
+                            tabs: contentTabData
+                                .map((e) => Tab(text: "$e"))
+                                .toList()),
+                      ))),
             ];
           },
 
@@ -150,7 +156,7 @@ class _HomeRootPageState extends State<HomeRootPage>
                   color: Colours.bg_color,
                   child: ListView.separated(
                       // physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.only(top: 5.h),
+                      padding: EdgeInsets.only(top: 5.h),
                       itemCount: 30,
                       separatorBuilder: (BuildContext context, int index) {
                         return Padding(
@@ -160,29 +166,24 @@ class _HomeRootPageState extends State<HomeRootPage>
                       },
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
-                          splashColor: Colours.dark_text_disabled,
-                          onTap: () {},
-                          child:
-                          Padding(
-                            padding:  EdgeInsets.only(left: 8.w,bottom: 5,right: 8.w),
-                            child: MyCard(
-
-                              color: Colours.material_bg,
-                              child:
-                              Container(
-                                height: 200.h,
-                                child: Center(
-                                 child: Text(
-                                    "${e} $index",
-                                    style: TextStyles.text,
+                            splashColor: Colours.dark_text_disabled,
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 8.w, bottom: 5, right: 8.w),
+                              child: MyCard(
+                                color: Colours.material_bg,
+                                child: Container(
+                                  height: 200.h,
+                                  child: Center(
+                                    child: Text(
+                                      "${e} $index",
+                                      style: TextStyles.text,
+                                    ),
                                   ),
-
                                 ),
                               ),
-                            ),
-                          )
-
-                        );
+                            ));
                       }),
                 );
               }
