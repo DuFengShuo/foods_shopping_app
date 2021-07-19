@@ -45,20 +45,71 @@ class _HomeRootPageState extends State<HomeRootPage>
               color: Colours.material_bg,
               borderRadius: BorderRadius.all(Radius.circular(10.r))),
           margin: EdgeInsets.only(
-              top: 220.h, left: 10.w, right: 10.w, bottom: 60.h),
-          height: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "门店吃",
-                style: TextStyles.textBold26,
+              top: 230.h, left: 10.w, right: 10.w,bottom: 60.h),
+          // height: 100,
+          child: Container(
+            margin: EdgeInsets.all(10.h),
+            color: Colours.material_bg,
+            child:
+            Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      // Gaps.vGap20,
+                      Icon(Icons.face,),
+                      Gaps.vGap5,
+                      Text(
+                        "门店吃",
+                        style: TextStyles.textBold20
+                      )
+                    ],
+                  ),
+                  Container(
+                    width: 1,
+                    height: 100.h,
+                    color: Colours.bg_gray,
+                  ),
+                  Column(
+                    children: [
+                      // Gaps.vGap20,
+                      Icon(Icons.pedal_bike),
+                      Gaps.vGap5,
+                      Text(
+                        "外卖",
+                        style: TextStyles.textBold20,
+                      )
+                    ],
+                  ),
+                ],
               ),
-              Text(
-                "外卖",
-                style: TextStyles.textBold26,
+              Container(
+                width: Screen.width(context),
+                height: 1,
+                color: Colours.bg_gray,
               ),
-            ],
+               Gaps.vGap12,
+               Row(
+                 children: [
+                   Gaps.hGap10,
+                   Icon(Icons.people_outline),
+                   Gaps.hGap10,
+                   Text("好友拼单",style: TextStyles.text,),
+                   Expanded(child: Container()),
+                   Padding(
+                     padding: const EdgeInsets.only(right: 3),
+                     child: Text("一起拼个单,更划算",style: TextStyles.textSize10.copyWith(color: Colours.dark_text_gray),),
+                   ),
+                   Padding(
+                     padding: const EdgeInsets.only(right: 5),
+                     child: Icon(Icons.navigate_next,size: 15,),
+                   ),
+                 ],
+               )
+
+            ],)
+
           ),
         ),
 
@@ -110,11 +161,11 @@ class _HomeRootPageState extends State<HomeRootPage>
                   ///true SliverAppBar 不会滑动
                   pinned: true,
                   automaticallyImplyLeading: false,
-
                   ///是否随着滑动隐藏标题
                   floating: true,
                   // snap: true,
                   forceElevated: true,
+
                   backgroundColor: Colours.material_bg,
                   ///SliverAppBar展开的高度
                   expandedHeight: 420.h,

@@ -39,9 +39,9 @@ class TextStyles {
   static TextStyle textBold17 =
       TextStyle(fontSize: Dimens.font_sp17, fontWeight: FontWeight.w500);
   static TextStyle textBold18 =
-      TextStyle(fontSize: Dimens.font_sp18, fontWeight: FontWeight.w500);
+      TextStyle(fontSize: Dimens.font_sp18, fontWeight: FontWeight.bold);
   static TextStyle textBold20 =
-      TextStyle(fontSize: Dimens.font_sp20, fontWeight: FontWeight.w500);
+      TextStyle(fontSize: Dimens.font_sp20,fontWeight: FontWeight.bold);
   static TextStyle textBold24 =
       TextStyle(fontSize: Dimens.font_sp24, fontWeight: FontWeight.w500);
   static TextStyle textBold26 =
