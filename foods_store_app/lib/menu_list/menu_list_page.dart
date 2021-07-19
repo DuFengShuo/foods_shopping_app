@@ -3,13 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foods_store_app/menu_list/goods_tj_page.dart';
 import 'package:foods_store_app/res/resources.dart';
 import 'package:foods_store_app/util/cancel_over_style.dart';
 
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 // scrollable_positioned_list: ^0.1.10
-const numberOfItems = 10;
+const numberOfItems = 3;
 const minItemHeight = 100.0;
 const maxItemHeight = 1000.0;
 const scrollDuration = Duration(milliseconds: 700);
@@ -38,6 +39,7 @@ class _MenuListPageState extends State<MenuListPage>
   late List<double> itemHeights;
   late List<Color> itemColors;
   bool reversed = false;
+   List<Widget>allViews = [GoodsTjPage(),GoodsTjPage(),GoodsTjPage(),GoodsTjPage(),];
 
   /// The alignment to be used next time the user scrolls or jumps to an item.
   double alignment = 0;
@@ -157,7 +159,7 @@ class _MenuListPageState extends State<MenuListPage>
       ScrollConfiguration(
           behavior: OverScrollBehavior(),
           child:ScrollablePositionedList.builder(
-        itemCount: numberOfItems,
+        itemCount: allViews.length,
         // physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => item(index, orientation),
         itemScrollController: itemScrollController,
@@ -179,13 +181,9 @@ class _MenuListPageState extends State<MenuListPage>
 
   /// Generate item number [i].
   Widget item(int i, Orientation orientation) {
-    return Container(
-      height: 400,
-      color: Colours.bg_color,
-      child: ListTile(
-        title: Text("$i"),
-      ),
-    );
+
+
+    return allViews[i];
   }
 }
 
