@@ -34,6 +34,7 @@ class _TjPageState extends State<TjPage> {
     List data = responseData.data['itemList'];
     data.forEach((element) {
       dataList.add(element);
+      print("===${element["listPicUrl"]}");
     });
     setState(() {
       allDatas.addAll(dataList);
@@ -54,7 +55,7 @@ class _TjPageState extends State<TjPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colours.bg_color,
+        color: Colours.material_bg,
         child: ScrollConfiguration(
           behavior: OverScrollBehavior(),
           child: ListView.separated(

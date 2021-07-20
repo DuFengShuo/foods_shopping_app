@@ -1,9 +1,12 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:foods_store_app/home/page/tj_page.dart';
 import 'package:foods_store_app/res/resources.dart';
+import 'package:foods_store_app/util/image_utils.dart';
 import 'package:foods_store_app/util/screen_utils.dart';
 import 'package:foods_store_app/widgets/my_card.dart';
 
@@ -24,113 +27,163 @@ class _HomeRootPageState extends State<HomeRootPage>
     "活动",
     "周边",
   ];
+  List allImage = [
+    "https://yanxuan-item.nosdn.127.net/feefe540760f3f43cc3d1a7e65f846d9.png",
+    "https://yanxuan-item.nosdn.127.net/8ba0a652e6162164ae83a22fcd35cd8e.png",
+    "https://yanxuan-item.nosdn.127.net/705b982786502787db9592fa6014c627.png",
+    "https://yanxuan-item.nosdn.127.net/e720ee099ad7edb39c0b5507a105c7a0.png"
+  ];
 
   FlexibleSpaceBar buildFlexibleSpaceBar() {
     return FlexibleSpaceBar(
       collapseMode: CollapseMode.pin,
-
       centerTitle: true,
       background: Container(
-        margin: EdgeInsets.only(bottom: 2.h),//去除底部线条
-        decoration: BoxDecoration(
-          // color: Colours.material_bg,
-          image: DecorationImage(
-            image: NetworkImage(
-                "https://yanxuan-item.nosdn.127.net/e4d67a42618560457af6b915f2772787.jpg"),
-            //背景图片
-            fit: BoxFit.cover,
-          ),
-        ),
-        height: 320.h,
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colours.material_bg,
-              borderRadius: BorderRadius.all(Radius.circular(10.r))),
-          margin: EdgeInsets.only(
-              top: 230.h, left: 10.w, right: 10.w,bottom: 60.h),
-          // height: 100,
-          child: Container(
-            margin: EdgeInsets.all(10.h),
-            color: Colours.material_bg,
-            child:
-            Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      // Gaps.vGap20,
-                      Icon(Icons.face,),
-                      Gaps.vGap5,
-                      Text(
-                        "门店吃",
-                        style: TextStyles.textBold20
-                      )
-                    ],
-                  ),
-                  Container(
-                    width: 1,
-                    height: 100.h,
-                    color: Colours.bg_gray,
-                  ),
-                  Column(
-                    children: [
-                      // Gaps.vGap20,
-                      Icon(Icons.pedal_bike),
-                      Gaps.vGap5,
-                      Text(
-                        "外卖",
-                        style: TextStyles.textBold20,
-                      )
-                    ],
-                  ),
-                ],
-              ),
+          color: Colours.bg_color,
+          margin: EdgeInsets.only(bottom: 2.h),
+          //去除底部线条
+          // decoration: BoxDecoration(
+          //   // color: Colours.material_bg,
+          //   image: DecorationImage(
+          //     image: NetworkImage(
+          //         "https://yanxuan-item.nosdn.127.net/922390c8fc1e6a619c2a1c1196ac4856.png"),
+          //     //背景图片
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
+          height: 320.h,
+          child: Stack(
+            children: [
               Container(
-                width: Screen.width(context),
-                height: 1,
-                color: Colours.bg_gray,
+                // margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                          color: const Color(0xffDDDDDD),
+                          offset: const Offset(0.0, 0.0),
+                          blurRadius: 0,
+                          spreadRadius: 0.0),
+                    ],
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(12.r),
+                        bottomRight: Radius.circular(12.r))),
+                height: 320.h,
+                child: Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0.r),
+
+                        ///图片顶部圆角
+                        child: Image(
+                          fit: BoxFit.cover,
+                          image: ImageUtils.getImageProvider(
+                              "${allImage[index]}",
+                              holderImg: "state/company"),
+                        ));
+                  },
+                  itemCount: allImage.length,
+                  autoplay: true, //
+
+                  pagination: new SwiperPagination(
+                      builder: DotSwiperPaginationBuilder(
+                    color: Colours.text_gray_c,
+                    activeColor: Colours.app_main,
+                  )),
+                  // viewportFraction: 0.9,
+                  //scale: 0.6,
+                ),
               ),
-               Gaps.vGap12,
-               Row(
-                 children: [
-                   Gaps.hGap10,
-                   Icon(Icons.people_outline),
-                   Gaps.hGap10,
-                   Text("好友拼单",style: TextStyles.text,),
-                   Expanded(child: Container()),
-                   Padding(
-                     padding: const EdgeInsets.only(right: 3),
-                     child: Text("一起拼个单,更划算",style: TextStyles.textSize10.copyWith(color: Colours.dark_text_gray),),
-                   ),
-                   Padding(
-                     padding: const EdgeInsets.only(right: 5),
-                     child: Icon(Icons.navigate_next,size: 15,),
-                   ),
-                 ],
-               )
-
-            ],)
-
-          ),
-        ),
-
-        // child: ClipRRect(
-        //   // make sure we apply clip it properly
-        //   child: BackdropFilter(
-        //     //背景滤镜
-        //     filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15), //背景模糊化
-        //     child: Container(
-        //       alignment: Alignment.center,
-        //       color: Colors.grey.withOpacity(0.1),
-        //       // child: Text(
-        //       //   "Header Stop View", //前景文字
-        //       //   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-        //       // ),
-        //     ),
-        //   ),
-        // ),
-      ),
+              Positioned(
+                  top: 230.h,
+                  left: 10.w,
+                  right: 10.w,
+                  bottom: 60.h,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                              color: const Color(0xffDDDDDD),
+                              offset: const Offset(0.0, 0.0),
+                              blurRadius: 0,
+                              spreadRadius: 0.0),
+                        ],
+                        color: Colours.material_bg,
+                        borderRadius: BorderRadius.all(Radius.circular(8.r))),
+                    child: Container(
+                        margin: EdgeInsets.all(10.h),
+                        color: Colours.material_bg,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  children: [
+                                    // Gaps.vGap20,
+                                    Icon(
+                                      Icons.face,
+                                    ),
+                                    Gaps.vGap5,
+                                    Text("门店吃", style: TextStyles.textBold20)
+                                  ],
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(right: 10.w),
+                                  width: 1,
+                                  height: 100.h,
+                                  color: Colours.bg_gray,
+                                ),
+                                Column(
+                                  children: [
+                                    // Gaps.vGap20,
+                                    Icon(Icons.pedal_bike),
+                                    Gaps.vGap5,
+                                    Text(
+                                      "外卖",
+                                      style: TextStyles.textBold20,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Container(
+                              width: Screen.width(context),
+                              height: 1,
+                              color: Colours.bg_gray,
+                            ),
+                            Gaps.vGap12,
+                            Row(
+                              children: [
+                                Gaps.hGap10,
+                                Icon(Icons.people_outline),
+                                Gaps.hGap10,
+                                Text(
+                                  "好友拼单",
+                                  style: TextStyles.text,
+                                ),
+                                Expanded(child: Container()),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 3),
+                                  child: Text(
+                                    "一起拼个单,更划算",
+                                    style: TextStyles.textSize10.copyWith(
+                                        color: Colours.dark_text_gray),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 5),
+                                  child: Icon(
+                                    Icons.navigate_next,
+                                    size: 15,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        )),
+                  )),
+            ],
+          )),
     );
   }
 
@@ -165,12 +218,13 @@ class _HomeRootPageState extends State<HomeRootPage>
                   ///true SliverAppBar 不会滑动
                   pinned: true,
                   automaticallyImplyLeading: false,
+
                   ///是否随着滑动隐藏标题
                   floating: true,
                   // snap: true,
                   forceElevated: true,
-
                   backgroundColor: Colours.material_bg,
+
                   ///SliverAppBar展开的高度
                   expandedHeight: 420.h,
                   flexibleSpace: buildFlexibleSpaceBar(),
@@ -180,13 +234,16 @@ class _HomeRootPageState extends State<HomeRootPage>
                       child: Container(
                         width: Screen.width(context),
                         color: Colours.material_bg,
-
                         child: TabBar(
+                            // indicatorPadding: EdgeInsets.only(
+                            //   left: 15.w,
+                            // ),
 
-                            indicatorPadding: EdgeInsets.only(left: 5.w, right: 5.w,),
+                            automaticIndicatorColorAdjustment: false,
+                            labelPadding: EdgeInsets.only(left: 15.w),
                             controller: tabController,
                             indicatorSize: TabBarIndicatorSize.label,
-                            indicatorColor: Colours.app_main,
+                            indicatorColor: Colors.transparent,
                             unselectedLabelColor: Colours.dark_text_gray,
                             labelColor: Colours.app_main,
                             isScrollable: true,
@@ -198,8 +255,7 @@ class _HomeRootPageState extends State<HomeRootPage>
                             tabs: contentTabData
                                 .map((e) => Tab(text: "$e"))
                                 .toList()),
-                      ))
-                   ),
+                      ))),
             ];
           },
 
@@ -211,7 +267,7 @@ class _HomeRootPageState extends State<HomeRootPage>
                 return TjPage();
               } else {
                 return Container(
-                  color: Colours.bg_color,
+                  color: Colours.material_bg,
                   child: ListView.separated(
                       // physics: BouncingScrollPhysics(),
                       padding: EdgeInsets.only(top: 5.h),

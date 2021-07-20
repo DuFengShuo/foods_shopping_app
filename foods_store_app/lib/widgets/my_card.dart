@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foods_store_app/res/colors.dart';
 import 'package:foods_store_app/util/theme_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCard extends StatelessWidget {
   const MyCard({Key? key, required this.child, this.color, this.shadowColor})
@@ -22,12 +23,12 @@ class MyCard extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: _backgroundColor,
-        borderRadius: BorderRadius.circular(4.0),
+        borderRadius: BorderRadius.circular(8.0.r),
         boxShadow: <BoxShadow>[
           BoxShadow(
               color: _shadowColor,
-              offset: const Offset(0.0, 2.0),
-              blurRadius: 4.0,
+              offset: const Offset(0.0, 0.0),
+              blurRadius: 0.8,
               spreadRadius: 0.0),
         ],
       ),
