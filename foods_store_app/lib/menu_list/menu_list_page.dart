@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foods_store_app/menu_list/goods_tj_page.dart';
+import 'package:foods_store_app/menu_list/widget/menu_lift_widget.dart';
 import 'package:foods_store_app/res/resources.dart';
 import 'package:foods_store_app/util/cancel_over_style.dart';
 
@@ -39,7 +40,12 @@ class _MenuListPageState extends State<MenuListPage>
   late List<double> itemHeights;
   late List<Color> itemColors;
   bool reversed = false;
-   List<Widget>allViews = [GoodsTjPage(),GoodsTjPage(),GoodsTjPage(),GoodsTjPage(),];
+  List<Widget> allViews = [
+    GoodsTjPage(),
+    GoodsTjPage(),
+    GoodsTjPage(),
+    GoodsTjPage(),
+  ];
 
   /// The alignment to be used next time the user scrolls or jumps to an item.
   double alignment = 0;
@@ -96,56 +102,60 @@ class _MenuListPageState extends State<MenuListPage>
         elevation: 0.3,
         centerTitle: true,
         backgroundColor: Colours.material_bg,
-        title:
-
-        Container(
-          child:
-          Row(
-            children: [
-              Icon(Icons.location_on_outlined,color: Colours.text,),
-               Column(
-                 crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                   Text(
-                     "顺河路124号店",
-                     style: TextStyles.textBold16.copyWith(color: Colours.text),
-                   ),
-                   Text(
-                     "距离你900m",
-                     style: TextStyles.textSize12.copyWith(color: Colours.text_gray),
-                   ),
-                 ],
-               ),
-
-
-
-              Expanded(child: Container()),
-
-              Text(
-                "自取/外卖",
-                style: TextStyles.textSize12.copyWith(color: Colours.text_gray),
-              ),
-              CupertinoSwitch(
-                  activeColor: Colours.app_main,
-                  value: true, onChanged: (v){})
-            ],
-          )
-
-        ),
+        title: Container(
+            child: Row(
+          children: [
+            Icon(
+              Icons.location_on_outlined,
+              color: Colours.text,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "顺河路124号店",
+                  style: TextStyles.textBold16.copyWith(color: Colours.text),
+                ),
+                Text(
+                  "距离你900m",
+                  style:
+                      TextStyles.textSize12.copyWith(color: Colours.text_gray),
+                ),
+              ],
+            ),
+            Expanded(child: Container()),
+            Text(
+              "自取/外卖",
+              style: TextStyles.textSize12.copyWith(color: Colours.text_gray),
+            ),
+            CupertinoSwitch(
+                activeColor: Colours.app_main, value: true, onChanged: (v) {})
+          ],
+        )),
       ),
       body: Row(
         children: [
           Expanded(
               flex: 2,
-              child: MyTabWidget(
-                tabDatas: contentTabData,
+              child: LeftTablePage(
                 itemPositionsListener: itemPositionsListener,
-                callBack: (value) {
+                callResultBack: (value) {
                   if (value != null) {
                     jumpTo(value);
                   }
                 },
-              )),
+              )
+
+              // MyTabWidget(
+              //   tabDatas: contentTabData,
+              //   itemPositionsListener: itemPositionsListener,
+              //   callBack: (value) {
+              //     if (value != null) {
+              //       jumpTo(value);
+              //     }
+              //   },
+              // )
+              ),
           Expanded(
               flex: 8,
               child: OrientationBuilder(
@@ -154,11 +164,9 @@ class _MenuListPageState extends State<MenuListPage>
         ],
       ));
 
-  Widget list(Orientation orientation) =>
-
-      ScrollConfiguration(
-          behavior: OverScrollBehavior(),
-          child:ScrollablePositionedList.builder(
+  Widget list(Orientation orientation) => ScrollConfiguration(
+      behavior: OverScrollBehavior(),
+      child: ScrollablePositionedList.builder(
         itemCount: allViews.length,
         // physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => item(index, orientation),
@@ -181,8 +189,6 @@ class _MenuListPageState extends State<MenuListPage>
 
   /// Generate item number [i].
   Widget item(int i, Orientation orientation) {
-
-
     return allViews[i];
   }
 }
