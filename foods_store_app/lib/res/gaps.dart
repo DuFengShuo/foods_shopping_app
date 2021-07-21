@@ -45,8 +45,8 @@ class Gaps {
   );
 
   static Widget line = Divider(
-    height: Dimens.gap_v_dp1,
-    color: Colours.line,
+    height: 2,
+    color: Colors.grey[300],
   );
 
   static Widget vLine = SizedBox(

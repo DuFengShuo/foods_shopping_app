@@ -97,7 +97,7 @@ class _HomeRootPageState extends State<HomeRootPage>
                   top: 230.h,
                   left: 10.w,
                   right: 10.w,
-                  bottom: 60.h,
+                  bottom: 54.h,
                   child: Container(
                     decoration: BoxDecoration(
                         boxShadow: <BoxShadow>[
@@ -228,17 +228,13 @@ class _HomeRootPageState extends State<HomeRootPage>
                   ///SliverAppBar展开的高度
                   expandedHeight: 420.h,
                   flexibleSpace: buildFlexibleSpaceBar(),
-                  elevation: 0.2,
+                  elevation: 0.3,
                   bottom: PreferredSize(
                       preferredSize: Size.fromHeight(50.h),
                       child: Container(
                         width: Screen.width(context),
                         color: Colours.material_bg,
                         child: TabBar(
-                            // indicatorPadding: EdgeInsets.only(
-                            //   left: 15.w,
-                            // ),
-
                             automaticIndicatorColorAdjustment: false,
                             labelPadding: EdgeInsets.only(left: 15.w),
                             controller: tabController,
