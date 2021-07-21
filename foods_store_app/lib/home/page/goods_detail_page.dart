@@ -2,7 +2,10 @@ import 'dart:ui';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:foods_store_app/res/resources.dart';
+import 'package:foods_store_app/util/image_utils.dart';
+import 'package:foods_store_app/util/screen_utils.dart';
 import 'package:foods_store_app/widgets/icon_font.dart';
+import 'package:foods_store_app/widgets/my_button.dart';
 import 'package:foods_store_app/widgets/swiper_widget.dart';
 
 
@@ -24,121 +27,123 @@ class _SliverAppBarPageState extends State<SliverAppBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverPersistentHeader(
-            // floating: true,
-            pinned: true,
-            delegate: SliverCustomHeaderDelegate(
-              title: '商品详情页',
-              collapsedHeight: 54.h,
-              //appbar高度
-              expandedHeight: 300.h,
-              type: "personnel",
-              paddingTop: MediaQuery.of(context).padding.top,
-              sliverHeaderWidget:
-              SwipterWidget(
-                height: 240.h,
-                allDatas: allImage,
-                radius: 0,
-              )
-              // Container(
-              //   decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //       image: NetworkImage(
-              //           "https://yanxuan-item.nosdn.127.net/8ba0a652e6162164ae83a22fcd35cd8e.png"),
-              //       //背景图片
-              //       fit: BoxFit.cover,
-              //     ),
-              //   ),
-              //   height: 240.h,
-              //   child: ClipRRect(
-              //     // make sure we apply clip it properly
-              //     child: BackdropFilter(
-              //       //背景滤镜
-              //       filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15), //背景模糊化
-              //       child: Container(
-              //         alignment: Alignment.center,
-              //         color: Colors.grey.withOpacity(0.1),
-              //         child: Text(
-              //           "Header Stop View", //前景文字
-              //           style: TextStyle(
-              //               fontSize: 28, fontWeight: FontWeight.bold),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ),
-          ),
-          SliverAnimatedList(
-            initialItemCount: 1,
-            itemBuilder:
-                (BuildContext context, int index, Animation<double> animation) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Gaps.vGap15,
-                 Row(
-                   children: [
-                      Gaps.hGap10,
-                     Text( "￥22",
-                       maxLines: 1,
-                       overflow: TextOverflow.ellipsis,
-                       style: TextStyles.textBold26
-                           .copyWith(
-                           color: Colours.red),),
-                     Expanded(child: Gaps.empty),
-                     Text("3343人购买",style: TextStyles.textSize12.copyWith(color: Colours.text_gray),),
-                     Gaps.hGap10,
-                   ],
-                 ),
-                  Gaps.vGap15,
-                  Padding(
-                    padding:  EdgeInsets.only(left: 15.w,right: 15.w),
-                    child: Text(
-                      "超级三明治,材料优选,2000g,0热量,减肥必备,夏天来一箱,美得不行",
-                      maxLines: 3,
-                      style: TextStyles.textBold15
-                          .copyWith(
-                          color: Colors.black,
-                          fontWeight:
-                          FontWeight.w400),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Gaps.vGap5,
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 15.w, right: 15.w),
-                    child: Text(
-                      "一个管饱哦!",
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyles.textSize12
-                          .copyWith(
-                          color: Colours.text_gray),
-                    ),
-                  ),
-                  Gaps.vGap15,
-                  Gaps.lineV,
-                  Container(
-                    height: 200,
+      body:Stack(
 
-                  ),
-                   Gaps.lineV,
-                ],
-              );
-            },
-          )
-          // SliverFillRemaining(
-          //   fillOverscroll:true,
-          //   child: PersonDetailContent(
-          //     model: model,
-          //   ),
-          // )
+        children: [
+
+          CustomScrollView(
+            slivers: <Widget>[
+              SliverPersistentHeader(
+                // floating: true,
+                pinned: true,
+                delegate: SliverCustomHeaderDelegate(
+                    title: '商品详情页',
+                    collapsedHeight: 54.h,
+                    //appbar高度
+                    expandedHeight: 300.h,
+                    type: "personnel",
+                    paddingTop: MediaQuery.of(context).padding.top,
+                    sliverHeaderWidget:
+                    SwipterWidget(
+                      height: 240.h,
+                      allDatas: allImage,
+                      radius: 0,
+                    )
+                ),
+              ),
+              SliverAnimatedList(
+                initialItemCount: 1,
+                itemBuilder:
+                    (BuildContext context, int index, Animation<double> animation) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Gaps.vGap15,
+                      Row(
+                        children: [
+                          Gaps.hGap10,
+                          Text( "￥22",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyles.textBold26
+                                .copyWith(
+                                color: Colours.red),),
+                          Expanded(child: Gaps.empty),
+                          Text("3343人购买",style: TextStyles.textSize12.copyWith(color: Colours.text_gray),),
+                          Gaps.hGap10,
+                        ],
+                      ),
+                      Gaps.vGap15,
+                      Padding(
+                        padding:  EdgeInsets.only(left: 15.w,right: 15.w),
+                        child: Text(
+                          "超级三明治,材料优选,2000g,0热量,减肥必备,夏天来一箱,美得不行",
+                          maxLines: 3,
+                          style: TextStyles.textBold15
+                              .copyWith(
+                              color: Colors.black,
+                              fontWeight:
+                              FontWeight.w400),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Gaps.vGap5,
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 15.w, right: 15.w),
+                        child: Text(
+                          "一个管饱哦!",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyles.textSize12
+                              .copyWith(
+                              color: Colours.text_gray),
+                        ),
+                      ),
+                      Gaps.vGap15,
+                      Gaps.lineV,
+                      ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: allImage.length,
+                          itemBuilder: (BuildContext context,int index){
+                            return Image(
+                              fit: BoxFit.cover,
+                              image: ImageUtils.getImageProvider(
+                                  "${allImage[index]}",
+                                  holderImg: "state/company"),
+                            );
+
+                          }),
+                      Gaps.lineV,
+                    ],
+                  );
+                },
+              )
+            ],
+          ),
+          Positioned(
+              bottom: 0,
+              child: Container(
+                width: Screen.width(context),
+              color: Colours.material_bg,
+
+            height: 50.h,
+              // child:  MyButton(
+              //   minHeight: 40,
+              //   fontSize: 14,
+              //   textColor: Colours.material_bg,
+              //   onPressed: () {},
+              //   backgroundColor: Colours.app_main,
+              //   text: "立即联系",
+              // ),
+
+              ))
+
         ],
-      ),
+      )
+
+
     );
   }
 }

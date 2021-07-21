@@ -1,16 +1,30 @@
-# foods_store_app
+# mobil_client
 
-A new Flutter application.
+A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+<!-- web打包 -->
+flutter build web --web-renderer html 
+<!-- 打包apk -->
+flutter build apk --no-tree-shake-icons
+<!-- 打包不同架构apk -->
+flutter build apk --no-tree-shake-icons --target-platform android-arm,android-arm64,android-x64 --split-per-abi
 
-A few resources to get you started if this is your first Flutter project:
+<!-- model生成.g.dart文件 -->
+(1)一次性编译： flutter packages pub run build_runner build
+(2)后台自动编译： flutter packages pub run build_runner watch
+flutter packages pub run build_runner clean
+flutter packages pub run build_runner build --delete-conflicting-outputs
+<!-- json_serializable 自动生成工具： -->
+https://caijinglong.github.io/json2dart/index.html
+<!-- 适配 -->
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+<!-- 运行web -->
+flutter run -d chrome --web-port=8080 --web-hostname=127.0.0.1
+<!-- 测试下载地址 -->
+http://hcm2q.gyxza3.yjruhu.com/a31/rj_cf1/juyc.apk
+flutter run --no-sound-null-safety
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<!-- listview去除水波纹效果 -->
+physics: BouncingScrollPhysics(),
