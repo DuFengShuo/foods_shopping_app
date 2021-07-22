@@ -5,18 +5,18 @@ import 'package:foods_store_app/util/image_utils.dart';
 import 'package:foods_store_app/widgets/my_button.dart';
 import 'package:foods_store_app/widgets/my_card.dart';
 
-class GoodAddCellWidget extends StatefulWidget {
-  const GoodAddCellWidget({Key? key}) : super(key: key);
+class GoodCarCellWidget extends StatefulWidget {
+  const GoodCarCellWidget({Key? key}) : super(key: key);
 
   @override
-  _GoodAddCellWidgetState createState() => _GoodAddCellWidgetState();
+  _GoodCarCellWidgetState createState() => _GoodCarCellWidgetState();
 }
 
-class _GoodAddCellWidgetState extends State<GoodAddCellWidget> {
+class _GoodCarCellWidgetState extends State<GoodCarCellWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        // splashColor: Colours.d,
+        // splashColor: Colours.app_main,
         onTap: () {},
         child: Padding(
           padding:
@@ -33,14 +33,18 @@ class _GoodAddCellWidgetState extends State<GoodAddCellWidget> {
                     Gaps.vGap10,
                     Row(
                       children: <Widget>[
-                        Gaps.hGap10,
+
+                        Radio(value: false, groupValue: true, onChanged: (value){
+
+                        }),
+
                         ClipRRect(
                           borderRadius: BorderRadius.circular(6.0.r),
 
                           ///图片顶部圆角
                           child: Container(
-                              height: 110.0.h,
-                              width: 100.w,
+                              height: 100.0.h,
+                              width: 90.w,
                               padding: EdgeInsets.only(left: 0),
                               color: Colours.bg_gray,
                               child: Image(
@@ -53,7 +57,7 @@ class _GoodAddCellWidgetState extends State<GoodAddCellWidget> {
                         Gaps.hGap5,
                         Expanded(
                           child: Container(
-                            height: 120.h,
+                            height: 100.h,
                             child: Column(
                               crossAxisAlignment:
                               CrossAxisAlignment.start, //横轴
@@ -79,7 +83,7 @@ class _GoodAddCellWidgetState extends State<GoodAddCellWidget> {
                                   padding: EdgeInsets.only(
                                       left: 10.w, right: 10.w),
                                   child: Text(
-                                    "商品介绍,两行数据,看看有没有越界,等问题 ",
+                                    "商品介绍,两行数据,看看有没有越界,等问题,范德萨发大水发顺丰打赏 ",
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyles.textSize10
@@ -108,16 +112,18 @@ class _GoodAddCellWidgetState extends State<GoodAddCellWidget> {
                                     Padding(
                                       padding:
                                       EdgeInsets.only(top: 3.h),
-                                      child: Container(
-                                          height: 26.h,
-                                          width: 60.w,
-                                          child: MyButton(
-                                            radius: 30,
-                                            fontSize: 10,
-                                            minWidth: 60.w,
-                                            text: "选规格",
-                                            onPressed: () {},
-                                          )),
+                                      child:
+
+                                      Row(
+                                        children: [
+                                          Icon(Icons.remove_circle_outline,color: Colours.text_gray,),
+                                          Gaps.hGap5,
+                                          Text("2",style: TextStyles.textSize16,),
+                                          Gaps.hGap5,
+                                          Icon(Icons.add_circle_outline,color: Colours.text_gray,),
+                                        ],
+                                      )
+
                                     ),
                                     Gaps.hGap15,
                                   ],

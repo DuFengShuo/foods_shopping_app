@@ -13,7 +13,7 @@ class MyButton extends StatelessWidget {
     this.disabledTextColor,
     this.backgroundColor,
     this.disabledBackgroundColor,
-    this.minHeight = 40.0,
+    this.minHeight = 30.0,
     this.minWidth = double.infinity,
     required this.onPressed,
     this.padding = const EdgeInsets.symmetric(horizontal: 16.0),

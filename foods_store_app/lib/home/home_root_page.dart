@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:foods_store_app/home/page/activity_page.dart';
 import 'package:foods_store_app/home/page/tj_page.dart';
 import 'package:foods_store_app/res/resources.dart';
 import 'package:foods_store_app/util/image_utils.dart';
@@ -33,7 +34,12 @@ class _HomeRootPageState extends State<HomeRootPage>
     "https://yanxuan-item.nosdn.127.net/705b982786502787db9592fa6014c627.png",
     "https://yanxuan-item.nosdn.127.net/e720ee099ad7edb39c0b5507a105c7a0.png"
   ];
-
+  List <Widget>allTabWidget= [
+   TjPage(),
+   ActivityPage(),
+    ActivityPage(),
+    ActivityPage()
+  ];
   FlexibleSpaceBar buildFlexibleSpaceBar() {
     return FlexibleSpaceBar(
       collapseMode: CollapseMode.pin,
@@ -212,19 +218,13 @@ class _HomeRootPageState extends State<HomeRootPage>
           headerSliverBuilder: (BuildContext context, bool b) {
             return [
               SliverAppBar(
-
-                  // shadowColor: Colours.material_bg,
-                  // brightness: Brightness.dark,
-                  ///true SliverAppBar 不会滑动
                   pinned: true,
                   automaticallyImplyLeading: false,
-
                   ///是否随着滑动隐藏标题
                   floating: true,
                   // snap: true,
                   forceElevated: true,
                   backgroundColor: Colours.material_bg,
-
                   ///SliverAppBar展开的高度
                   expandedHeight: 420.h,
                   flexibleSpace: buildFlexibleSpaceBar(),
@@ -258,46 +258,7 @@ class _HomeRootPageState extends State<HomeRootPage>
           ///主体部分
           body: TabBarView(
             controller: tabController,
-            children: contentTabData.map((e) {
-              if (e == "推荐") {
-                return TjPage();
-              } else {
-                return Container(
-                  color: Colours.material_bg,
-                  child: ListView.separated(
-                      // physics: BouncingScrollPhysics(),
-                      padding: EdgeInsets.only(top: 5.h),
-                      itemCount: 30,
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Gaps.line,
-                        );
-                      },
-                      itemBuilder: (BuildContext context, int index) {
-                        return InkWell(
-                            splashColor: Colours.dark_text_disabled,
-                            onTap: () {},
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 8.w, bottom: 5, right: 8.w),
-                              child: MyCard(
-                                color: Colours.material_bg,
-                                child: Container(
-                                  height: 200.h,
-                                  child: Center(
-                                    child: Text(
-                                      "${e} $index",
-                                      style: TextStyles.text,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ));
-                      }),
-                );
-              }
-            }).toList(),
+            children:allTabWidget,
           )),
     );
   }
