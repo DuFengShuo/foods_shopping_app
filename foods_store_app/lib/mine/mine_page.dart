@@ -13,9 +13,7 @@ class _MineRootPageState extends State<MineRootPage> {
     return Scaffold(
       body: MyScrollView(children: [
 
-
       ],
-
       ),
     );
   }

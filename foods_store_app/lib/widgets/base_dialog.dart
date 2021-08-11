@@ -2,7 +2,6 @@ import 'package:foods_store_app/widgets/load_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foods_store_app/res/resources.dart';
 import 'package:foods_store_app/routers/fluro_navigator.dart';
-import 'package:foods_store_app/util/device_utils.dart';
 import 'package:foods_store_app/widgets/my_button.dart';
 import 'package:foods_store_app/util/screen_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,13 +63,13 @@ class BaseDialog extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         _DialogButton(
-          text: 'Cancel',
+          text: '取消',
           textColor: Colours.material_bg,
           backgroundColor: Colours.text_gray_c,
           onPressed: () => NavigatorUtils.goBack(context),
         ),
         _DialogButton(
-          text: 'Done',
+          text: '确定',
           textColor: Colours.material_bg,
           onPressed: onPressed,
         ),
@@ -109,20 +108,20 @@ class BaseDialog extends StatelessWidget {
     /// Android 11添加了键盘弹出动画，这与我添加的过渡动画冲突（原先iOS、Android 没有相关过渡动画，相关问题跟踪：https://github.com/flutter/flutter/issues/19279）。
     /// 因为在Android 11上，viewInsets的值在键盘弹出过程中是变化的（以前只有开始结束的值）。
     /// 所以解决方法就是在Android 11及以上系统中使用Padding代替AnimatedPadding。
-
-    if (Device.getAndroidSdkInt() >= 30) {
-      return Padding(
-        padding: MediaQuery.of(context).viewInsets,
-        child: body,
-      );
-    } else {
+    //
+    // if (Device.getAndroidSdkInt() >= 30) {
+    //   return Padding(
+    //     padding: MediaQuery.of(context).viewInsets,
+    //     child: body,
+    //   );
+    // } else {
       return AnimatedPadding(
         padding: MediaQuery.of(context).viewInsets,
         duration: const Duration(milliseconds: 120),
         curve: Curves.easeInCubic, // easeOutQuad
         child: body,
       );
-    }
+   // }
   }
 }
 

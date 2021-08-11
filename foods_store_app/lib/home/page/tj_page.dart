@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:foods_store_app/home/page/goods_detail_page.dart';
+import 'package:foods_store_app/home/page/select_good_detail_dialog.dart';
+import 'package:foods_store_app/home/page/select_good_detail_page.dart';
 
 // import 'package:foods_store_app/home/model/itemListItem.dart';
 import 'package:foods_store_app/home/widget/tj_cell_widget.dart';
@@ -9,6 +11,7 @@ import 'package:foods_store_app/net/http_manager/api.dart';
 import 'package:foods_store_app/res/resources.dart';
 import 'package:foods_store_app/util/cancel_over_style.dart';
 import 'package:foods_store_app/util/image_utils.dart';
+import 'package:foods_store_app/util/other_utils.dart';
 import 'package:foods_store_app/util/user_config.dart';
 import 'package:foods_store_app/widgets/my_button.dart';
 import 'package:foods_store_app/widgets/my_card.dart';
@@ -41,9 +44,9 @@ class _TjPageState extends State<TjPage> {
       allDatas.addAll(dataList);
     });
     print("==---");
-    dataList.forEach((element) {
-      print(element.name);
-    });
+    // dataList.forEach((element) {
+    //   print(element.name);
+    // });
   }
 
   @override
@@ -110,7 +113,7 @@ class _TjPageState extends State<TjPage> {
                                           fit: BoxFit.cover,
                                           image: ImageUtils.getImageProvider(
                                               "${data["listPicUrl"]}",
-                                              holderImg: "state/company"),
+                                             ),
                                         )),
                                   ),
                                   Gaps.hGap5,
@@ -178,7 +181,18 @@ class _TjPageState extends State<TjPage> {
                                                       radius: 30,
                                                       fontSize: 10,
                                                       text: "立即购买",
-                                                      onPressed: () {},
+                                                      onPressed: () {
+
+                                                        showElasticDialog<void>(
+                                                          context: context,
+                                                          barrierDismissible: false,
+                                                          builder: (BuildContext contexts) {
+
+                                                            return SelectGoodContentPage(
+                                                            );
+                                                          },
+                                                        );
+                                                      },
                                                     )),
                                               ),
                                               Gaps.hGap15,
