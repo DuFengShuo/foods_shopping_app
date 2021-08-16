@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +26,7 @@ class _HomeRootPageState extends State<HomeRootPage>
     "上新",
     "活动",
     "周边",
+    "筹店"
   ];
   List allImage = [
     "https://yanxuan-item.nosdn.127.net/feefe540760f3f43cc3d1a7e65f846d9.png",
@@ -35,8 +35,9 @@ class _HomeRootPageState extends State<HomeRootPage>
     "https://yanxuan-item.nosdn.127.net/e720ee099ad7edb39c0b5507a105c7a0.png"
   ];
   List <Widget>allTabWidget= [
-   TjPage(),
-   ActivityPage(),
+    TjPage(),
+    ActivityPage(),
+    ActivityPage(),
     ActivityPage(),
     ActivityPage()
   ];
@@ -47,16 +48,6 @@ class _HomeRootPageState extends State<HomeRootPage>
       background: Container(
           color: Colours.bg_color,
           margin: EdgeInsets.only(bottom: 2.h),
-          //去除底部线条
-          // decoration: BoxDecoration(
-          //   // color: Colours.material_bg,
-          //   image: DecorationImage(
-          //     image: NetworkImage(
-          //         "https://yanxuan-item.nosdn.127.net/922390c8fc1e6a619c2a1c1196ac4856.png"),
-          //     //背景图片
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
           height: 320.h,
           child: Stack(
             children: [
@@ -100,11 +91,14 @@ class _HomeRootPageState extends State<HomeRootPage>
                 ),
               ),
               Positioned(
-                  top: 230.h,
-                  left: 10.w,
-                  right: 10.w,
-                  bottom: 54.h,
+                  top: 256.h,
+                  // left: 10.w,
+                  // right: 10.w,
+                  // bottom: 74.h,
                   child: Container(
+                    // height: 100.h,
+                    // margin: EdgeInsets.only(left: 10.w,right: 10.w),
+                    width: Screen.width(context),
                     decoration: BoxDecoration(
                         boxShadow: <BoxShadow>[
                           BoxShadow(
@@ -114,7 +108,7 @@ class _HomeRootPageState extends State<HomeRootPage>
                               spreadRadius: 0.0),
                         ],
                         color: Colours.material_bg,
-                        borderRadius: BorderRadius.all(Radius.circular(8.r))),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(8.r),topRight: Radius.circular(8.r)  )),
                     child: Container(
                         margin: EdgeInsets.all(10.h),
                         color: Colours.material_bg,
@@ -234,23 +228,36 @@ class _HomeRootPageState extends State<HomeRootPage>
                       child: Container(
                         width: Screen.width(context),
                         color: Colours.material_bg,
-                        child: TabBar(
-                            automaticIndicatorColorAdjustment: false,
-                            labelPadding: EdgeInsets.only(left: 15.w),
-                            controller: tabController,
-                            indicatorSize: TabBarIndicatorSize.label,
-                            indicatorColor: Colors.transparent,
-                            unselectedLabelColor: Colours.dark_text_gray,
-                            labelColor: Colours.app_main,
-                            isScrollable: true,
-                            unselectedLabelStyle: TextStyles.textSize14,
-                            labelStyle: TextStyles.textBold18,
-                            onTap: (value) {
-                              print("点了第$value个");
-                            },
-                            tabs: contentTabData
-                                .map((e) => Tab(text: "$e"))
-                                .toList()),
+                        child:
+                        Row(
+                          children: [
+                            Expanded(child:TabBar(
+                                automaticIndicatorColorAdjustment: false,
+                                labelPadding: EdgeInsets.only(left: 15.w),
+                                controller: tabController,
+                                indicatorSize: TabBarIndicatorSize.label,
+                                indicatorColor: Colors.transparent,
+                                unselectedLabelColor: Colours.dark_text_gray,
+                                labelColor: Colours.app_main,
+                                isScrollable: true,
+                                unselectedLabelStyle: TextStyles.textSize14,
+                                labelStyle: TextStyles.textBold18,
+                                onTap: (value) {
+                                  print("点了第$value个");
+                                },
+                                tabs: contentTabData
+                                    .map((e) => Tab(text: "$e"))
+                                    .toList()), ),
+
+                            Padding(
+                              padding:  EdgeInsets.only(right: 10.w),
+                              child: Icon(Icons.search_rounded,color: Colours.text_gray,size: 20.w,),
+                            )
+
+                          ],
+                        )
+
+
                       ))),
             ];
           },

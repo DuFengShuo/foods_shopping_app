@@ -100,7 +100,6 @@ class HttpManager {
     }));
 
     ///注意代理必须配置到await dio.request之后，否则不打开抓包工具时无法访问网络
-
     Options options = Options(
       method: method,
       headers: headers,

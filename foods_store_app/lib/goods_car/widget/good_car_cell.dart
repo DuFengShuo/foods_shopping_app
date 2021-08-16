@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foods_store_app/home/widget/select_num_cell.dart';
 import 'package:foods_store_app/res/resources.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foods_store_app/util/image_utils.dart';
@@ -53,7 +54,7 @@ class _GoodCarCellWidgetState extends State<GoodCarCellWidget> {
                     Gaps.hGap5,
                     Expanded(
                       child: Container(
-                        height: 100.h,
+                        height: 110.h,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start, //横轴
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -96,29 +97,11 @@ class _GoodCarCellWidgetState extends State<GoodCarCellWidget> {
                                   ),
                                 ),
                                 Expanded(child: Gaps.empty),
-                                Padding(
-                                    padding: EdgeInsets.only(top: 3.h),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.remove_circle_outline,
-                                          color: Colours.text_gray,
-                                        ),
-                                        Gaps.hGap5,
-                                        Text(
-                                          "2",
-                                          style: TextStyles.textSize16,
-                                        ),
-                                        Gaps.hGap5,
-                                        Icon(
-                                          Icons.add_circle_outline,
-                                          color: Colours.app_main,
-                                        ),
-                                      ],
-                                    )),
-                                Gaps.hGap15,
+                                SelectNumPage(),
+                                Gaps.hGap5,
                               ],
-                            )
+                            ),
+                            Expanded(child: Gaps.empty)
                           ],
                         ),
                       ),

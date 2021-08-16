@@ -11,8 +11,6 @@ void main() {
        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
        SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
      }
-
-
   runApp(MyApp());
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:foods_store_app/home/widget/good_wrap_widget.dart';
+import 'package:foods_store_app/home/widget/select_num_cell.dart';
 import 'package:foods_store_app/res/resources.dart';
 import 'package:foods_store_app/util/image_utils.dart';
 import 'package:foods_store_app/util/screen_utils.dart';
@@ -46,26 +47,51 @@ class _SelectGoodContentPageState extends State<SelectGoodContentPage> {
                       topLeft: Radius.circular(12.r),
                       topRight: Radius.circular(12.r))),
               height: 160.h,
-              child: Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  return ClipRRect(
-                      //  borderRadius: BorderRadius.circular(8.0.r),
-                      ///图片顶部圆角
-                      child: Image(
-                    fit: BoxFit.cover,
-                    image: ImageUtils.getImageProvider(
-                      "${allImage[index]}",
+              child:
+              Stack(
+                children: [
+                  Swiper(
+                    itemBuilder: (BuildContext context, int index) {
+                      return ClipRRect(
+                        //  borderRadius: BorderRadius.circular(8.0.r),
+                        ///图片顶部圆角
+                          child: Image(
+                            fit: BoxFit.cover,
+                            image: ImageUtils.getImageProvider(
+                              "${allImage[index]}",
+                            ),
+                          ));
+                    },
+                    itemCount: allImage.length,
+                    autoplay: true,
+                    pagination: new SwiperPagination(
+                        builder: DotSwiperPaginationBuilder(
+                          color: Colours.text_gray_c,
+                          activeColor: Colours.app_main,
+                        )),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Expanded(child: Gaps.empty),
+
+                        Icon(Icons.share,color: Colours.text,size: 20,),
+                        Gaps.hGap5,
+                        IconButton(onPressed: (){
+                          Navigator.pop(context);
+
+                        }, icon:  Icon(Icons.cancel,color: Colours.text,size: 25,),)
+
+
+                      ],
                     ),
-                  ));
-                },
-                itemCount: allImage.length,
-                autoplay: true,
-                pagination: new SwiperPagination(
-                    builder: DotSwiperPaginationBuilder(
-                  color: Colours.text_gray_c,
-                  activeColor: Colours.app_main,
-                )),
-              ),
+                  )
+
+                ],
+              )
+
             ),
             Gaps.vGap10,
             Padding(
@@ -132,41 +158,24 @@ class _SelectGoodContentPageState extends State<SelectGoodContentPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.line,
-                  Gaps.vGap10,
+                  // Gaps.vGap10,
                   Row(
                     children: [
-                      Gaps.hGap16,
+                      Gaps.hGap10,
                       Expanded(
                           child: Text(
                         "￥66",
                         style: TextStyles.textBold18
                             .copyWith(color: Colours.app_main),
                       )),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.remove_circle_outline,
-                            color: Colours.text_gray,
-                          ),
-                          Gaps.hGap5,
-                          Text(
-                            "1",
-                            style: TextStyles.textSize16,
-                          ),
-                          Gaps.hGap5,
-                          Icon(
-                            Icons.add_circle_outline,
-                            color: Colours.app_main,
-                          ),
-                        ],
-                      ),
-                      Gaps.hGap16,
+                      SelectNumPage(),
+                      Gaps.hGap10,
                     ],
                   ),
                   // Gaps.vGap10,
                   Padding(
                     padding: EdgeInsets.only(
-                      left: 20.w,
+                      left: 12.w,
                     ),
                     child: Text(
                       "已选：火腿，正常冰，少糖",
@@ -174,7 +183,7 @@ class _SelectGoodContentPageState extends State<SelectGoodContentPage> {
                           .copyWith(color: Colours.text_gray),
                     ),
                   ),
-                  Gaps.vGap20,
+                  Gaps.vGap10,
 
                   Padding(
                     padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -184,7 +193,10 @@ class _SelectGoodContentPageState extends State<SelectGoodContentPage> {
                         backgroundColor: Colours.app_main,
                         text: "选好了",
                         textColor: Colours.material_bg,
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.pop(context);
+
+                        }),
                   ),
                   Gaps.vGap15,
                 ],
